@@ -26,13 +26,16 @@
 	
 	programs.starship = {
 		enable = true;
+		settings = {
+			add_newline = true;
+			format = ''$all'';
+		};
 	};
 
 	programs.zsh = {
 		enable = true;
 		enableCompletion = true;
 		syntaxHighlighting.enable = true;
-
 
 		zplug = {
 			enable = true;
@@ -41,11 +44,11 @@
 			];
 		};
 
-#		autosuggestions.enable = true;
 		shellAliases = {
 			ll = "ls -l";
 			update = "sudo nixos-rebuild switch";
-			update-home = "home-manager switch";
+			switch = "home-manager switch";
+			neofetch = "fastfetch";
 		};
 
 		history.size = 10000;
