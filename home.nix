@@ -24,23 +24,20 @@
 		};	
 	};
 	
+	programs.starship = {
+		enable = true;
+	};
 
 	programs.zsh = {
 		enable = true;
 		enableCompletion = true;
 		syntaxHighlighting.enable = true;
-		
-		oh-my-zsh = {
-			enable = true;
-			plugins = [ ];
-			theme = "robbyrussell";
-		};
+
 
 		zplug = {
 			enable = true;
 			plugins = [
 				{ name = "zsh-users/zsh-autosuggestions"; }
-#				{ name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
 			];
 		};
 
