@@ -12,7 +12,12 @@
 	];
 
 #	programs.spotify.enable = true;
-	
+
+	xdg.portal = {
+		enable = true;
+		extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+	};
+
 	home = {
 		stateVersion = "24.11";
 		username = "ciara";
