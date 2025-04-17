@@ -1,34 +1,65 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-	services = {
-		gnome.gnome-keyring.enable = true;
-		upower.enable = true;
-		# dbus.enabled = true;
+  programs.dconf.enable = true;
 
-		xserver = {
-			enable = true;
-			#xstartDbusSession = true;
-			layout = "us";
-			libinput = {
-				enable = true;
-				disableWhileTyping = true;
-			};
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  services = {
+    gnome.gnome-keyring.enable = true;
+    upower.enable = true;
 
-			displayManager.defaultSession = "none+xmonad";
-		
-			windowManager.xmonad = {
-				enable = true;
-				enableContribAndExtras = true;
-			};
+    dbus = {
+      enable = true;
+      packages = [ pkgs.dconf ];
+    };
 
-			xkb.options = "caps:ctrl_modifier";
-		};
+    libinput = {
+      enable = true;
+      touchpad.disableWhileTyping = true;
+    };
 
-	};
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
 
-	hardware.bluetooth.enable = true;
-	services.blueman.enable = true;
+    displayManager.defaultSession = "none+xmonad";
 
-	systemd.services.upower.enable = true;
+    xserver = {
+      enable = true;
+
+      serverLayoutSection = ''
+        Option "StandbyTime" "0"
+        Option "SuspendTime" "0"
+        Option "OffTime"     "0"
+      '';
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
+
+      xkb = {
+        layout = "us";
+        options = "ctrl:nocaps";
+      };
+    };
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
+
+  services.blueman.enable = true;
+
+  systemd.services.upower.enable = true;
 }
+

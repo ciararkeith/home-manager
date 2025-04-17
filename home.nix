@@ -3,28 +3,16 @@
 {
 	programs.home-manager.enable = true;
 	imports = [
-		./programs/xmonad/default.nix
-		./programs/alacritty/default.nix
-		./programs/rofi/default.nix	
-		./services/polybar/default.nix
 		./services/dunst/default.nix
-		./services/picom/default.nix
 	];
 
-#	programs.spotify.enable = true;
-
-	xdg.portal = {
-		enable = true;
-		extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
-	};
-
 	home = {
-		stateVersion = "24.11";
+		stateVersion = "25.05";
 		username = "ciara";
 		homeDirectory = "/home/ciara";
   		sessionVariables = {
     			EDITOR = "nvim";
-			BROWSER = "firefox";
+			BROWSER = "/etc/profiles/per-user/ciara/bin/firefox";
     			TERMINAL = "alacritty";
 		};	
 	};
